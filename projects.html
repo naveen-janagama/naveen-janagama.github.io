@@ -1,0 +1,1132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse project portfolio by Naveen Reddy Janagama covering DevOps automation, cloud architecture, AI integration, and engineering case studies.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Naveen Reddy Janagama">
+    <meta name="keywords" content="Naveen Reddy Janagama, DevOps Engineer, SRE Engineer, Azure, Platform Engineering, AI Enabled DevOps">
+    <link rel="canonical" href="https://swaruppuvvada.com/projects.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Projects | Naveen Reddy Janagama">
+    <meta property="og:description" content="Browse project portfolio by Naveen Reddy Janagama covering DevOps automation, cloud architecture, AI integration, and engineering case studies.">
+    <meta property="og:url" content="https://swaruppuvvada.com/projects.html">
+    <meta property="og:site_name" content="Naveen Reddy Janagama Digital Profile">
+    <meta property="og:image" content="https://swaruppuvvada.com/images/favicon.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projects | Naveen Reddy Janagama">
+    <meta name="twitter:description" content="Browse project portfolio by Naveen Reddy Janagama covering DevOps automation, cloud architecture, AI integration, and engineering case studies.">
+    <meta name="twitter:image" content="https://swaruppuvvada.com/images/favicon.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Projects | Naveen Reddy Janagama",
+      "description": "Browse project portfolio by Naveen Reddy Janagama covering DevOps automation, cloud architecture, AI integration, and engineering case studies.",
+      "url": "https://swaruppuvvada.com/projects.html",
+      "author": {
+        "@type": "Person",
+        "name": "Naveen Reddy Janagama",
+        "url": "https://swaruppuvvada.com/"
+      }
+    }
+    </script>
+<title>Projects | Naveen Reddy Janagama</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Orbitron:wght@600;700;800&family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    <style>
+        :root {
+            --page-max: 1180px;
+            --surface-dark: rgba(8, 15, 28, 0.92);
+            --text-primary: #f5f8ff;
+            --text-secondary: rgba(219, 229, 245, 0.78);
+            --line-soft: rgba(255, 255, 255, 0.1);
+            --shadow-soft: 0 24px 70px rgba(0, 0, 0, 0.26);
+            --space-1: 8px;
+            --space-2: 12px;
+            --space-3: 16px;
+            --space-4: 24px;
+            --space-5: 32px;
+            --space-6: 48px;
+        }
+
+        .content-section.active {
+            padding: 18px 0 48px;
+        }
+
+        .projects-flow {
+            max-width: var(--page-max);
+            margin: 0 auto;
+            display: grid;
+            gap: var(--space-4);
+        }
+
+        .reveal-block {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal-block.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-4);
+            align-items: start;
+            padding: clamp(24px, 4vw, 38px);
+            border-radius: 30px;
+            border: 1px solid rgba(130, 210, 255, 0.16);
+            background:
+                radial-gradient(circle at 15% 18%, rgba(99, 214, 255, 0.16), transparent 28%),
+                radial-gradient(circle at 85% 20%, rgba(255, 157, 194, 0.12), transparent 24%),
+                linear-gradient(145deg, rgba(7, 12, 26, 0.96), rgba(10, 18, 36, 0.92));
+            box-shadow: var(--shadow-soft);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(157, 217, 255, 0.18);
+            background: rgba(255, 255, 255, 0.05);
+            color: #bfeaff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            max-width: 18ch;
+            margin: 14px 0 0;
+            color: var(--text-primary);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-copy {
+            max-width: 620px;
+            margin: 12px 0 0;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .section-cta,
+        .ghost-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1;
+            white-space: nowrap;
+            width: fit-content;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+        }
+
+        .section-cta:hover,
+        .ghost-cta:hover,
+        .showcase:hover {
+            transform: translateY(-2px);
+        }
+
+        .section-cta {
+            color: #07111d;
+            background: linear-gradient(135deg, #f8fcff, #8ee8ff);
+            box-shadow: 0 12px 28px rgba(113, 225, 255, 0.22);
+        }
+
+        .ghost-cta {
+            color: #dbefff;
+            border: 1px solid rgba(166, 221, 255, 0.2);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .hero-meta div {
+            padding: 16px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-meta strong {
+            display: block;
+            color: #fff;
+            font-size: 22px;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .hero-meta span {
+            display: block;
+            margin-top: 6px;
+            color: rgba(219, 234, 255, 0.74);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .hero-panel {
+            padding: 18px;
+            border-radius: 26px;
+            border: 1px solid rgba(169, 223, 255, 0.14);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(18px);
+            max-width: none;
+            width: 100%;
+        }
+
+        .hero-panel h4 {
+            margin: 0;
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+        }
+
+        .hero-panel p {
+            margin: 8px 0 0;
+            color: rgba(221, 236, 255, 0.76);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .hero-tags span {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #e6f4ff;
+            font-size: 12px;
+        }
+
+        .showcase {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+            gap: var(--space-5);
+            align-items: center;
+            padding: clamp(24px, 4vw, 34px);
+            border-radius: 28px;
+            border: 1px solid var(--line-soft);
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .showcase.is-reverse {
+            grid-template-columns: minmax(320px, 1.05fr) minmax(0, 0.95fr);
+        }
+
+        .showcase.is-reverse .showcase-copy {
+            order: 2;
+        }
+
+        .showcase.is-reverse .showcase-visual {
+            order: 1;
+        }
+
+        .theme-github {
+            background:
+                radial-gradient(circle at 82% 18%, rgba(94, 226, 255, 0.12), transparent 24%),
+                linear-gradient(145deg, rgba(8, 15, 34, 0.96), rgba(7, 10, 22, 0.96));
+        }
+
+        .theme-gitpass {
+            background:
+                radial-gradient(circle at 14% 18%, rgba(24, 239, 255, 0.14), transparent 26%),
+                linear-gradient(145deg, rgba(7, 18, 42, 0.96), rgba(5, 28, 56, 0.94));
+        }
+
+        .theme-food {
+            background:
+                radial-gradient(circle at 86% 14%, rgba(255, 162, 99, 0.16), transparent 24%),
+                linear-gradient(145deg, rgba(56, 26, 10, 0.96), rgba(28, 13, 8, 0.94));
+        }
+
+        .theme-music {
+            background:
+                radial-gradient(circle at 20% 18%, rgba(255, 103, 208, 0.14), transparent 24%),
+                radial-gradient(circle at 82% 18%, rgba(92, 200, 255, 0.16), transparent 26%),
+                linear-gradient(145deg, rgba(26, 11, 48, 0.96), rgba(10, 9, 28, 0.96));
+        }
+
+        .theme-boutique {
+            background:
+                radial-gradient(circle at 84% 16%, rgba(255, 168, 216, 0.14), transparent 24%),
+                radial-gradient(circle at 20% 82%, rgba(137, 201, 255, 0.12), transparent 26%),
+                linear-gradient(145deg, rgba(28, 14, 34, 0.96), rgba(13, 11, 24, 0.96));
+        }
+
+        .theme-toolly {
+            background:
+                radial-gradient(circle at 15% 16%, rgba(120, 181, 255, 0.14), transparent 24%),
+                linear-gradient(145deg, rgba(15, 24, 48, 0.84), rgba(8, 14, 28, 0.9));
+            backdrop-filter: blur(18px);
+        }
+
+        .theme-skilly {
+            background:
+                radial-gradient(circle at 84% 16%, rgba(108, 255, 205, 0.14), transparent 24%),
+                radial-gradient(circle at 16% 86%, rgba(140, 182, 255, 0.12), transparent 26%),
+                linear-gradient(145deg, rgba(8, 27, 32, 0.94), rgba(7, 16, 30, 0.94));
+        }
+
+        .theme-babji {
+            background:
+                radial-gradient(circle at 18% 16%, rgba(255, 198, 120, 0.16), transparent 24%),
+                radial-gradient(circle at 84% 84%, rgba(255, 144, 98, 0.12), transparent 26%),
+                linear-gradient(145deg, rgba(40, 18, 10, 0.94), rgba(22, 12, 8, 0.94));
+        }
+
+        .theme-events {
+            background:
+                radial-gradient(circle at 84% 16%, rgba(145, 255, 179, 0.14), transparent 22%),
+                linear-gradient(145deg, rgba(11, 28, 24, 0.96), rgba(8, 13, 24, 0.96));
+        }
+
+        .showcase-copy {
+            display: grid;
+            gap: var(--space-3);
+            align-content: start;
+        }
+
+        .showcase-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-mark {
+            width: 88px;
+            height: 88px;
+            border-radius: 20px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-mark::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.14), transparent 65%);
+            pointer-events: none;
+        }
+
+        .brand-mark img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.16));
+        }
+
+        .brand-mark span {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .brand-mark .asset-fallback,
+        .visual-card .asset-fallback {
+            display: none;
+        }
+
+        .brand-mark.is-fallback img,
+        .visual-card.is-fallback img {
+            display: none;
+        }
+
+        .brand-mark.is-fallback .asset-fallback,
+        .visual-card.is-fallback .asset-fallback {
+            display: grid;
+            place-items: center;
+        }
+
+        .asset-fallback {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            font-family: 'Syne', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #eef7ff;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+        }
+
+        .section-kicker {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.66);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .theme-boutique .section-kicker {
+            color: rgba(255, 221, 244, 0.74);
+        }
+
+        .theme-boutique .section-title {
+            color: #ffe9f7;
+        }
+
+        .theme-boutique .section-text,
+        .theme-boutique .feature-list li,
+        .theme-boutique .visual-card p,
+        .theme-boutique .mini-note {
+            color: rgba(244, 228, 246, 0.84);
+        }
+
+        .section-title {
+            max-width: 18ch;
+            margin: 6px 0 0;
+            color: #fff;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.9rem, 4vw, 3rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+        }
+
+        .section-text {
+            max-width: 58ch;
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.72;
+        }
+
+        .feature-list {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 8px;
+            color: rgba(232, 240, 255, 0.82);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .feature-list li::marker {
+            color: rgba(144, 224, 255, 0.9);
+        }
+
+        .showcase-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .theme-events .showcase-actions {
+            gap: 10px;
+        }
+
+        .theme-events .section-cta,
+        .theme-events .ghost-cta {
+            min-height: 40px;
+            padding: 0 16px;
+            border-radius: 18px;
+            font-size: 12px;
+        }
+
+        .showcase-visual {
+            display: grid;
+            gap: 14px;
+            align-content: center;
+        }
+
+        .theme-events {
+            align-items: stretch;
+        }
+
+        .theme-events .showcase-copy,
+        .theme-events .showcase-visual {
+            height: 100%;
+        }
+
+        .theme-events .showcase-copy {
+            align-content: stretch;
+        }
+
+        .theme-events .showcase-visual {
+            grid-template-rows: auto 1fr;
+            align-content: stretch;
+        }
+
+        .visual-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+            display: grid;
+            place-items: center;
+        }
+
+        .visual-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.18));
+            transition: transform 0.28s ease, filter 0.28s ease;
+        }
+
+        .visual-card.image-frame {
+            min-height: 320px;
+            padding: 20px;
+        }
+
+        .visual-card.image-frame img {
+            max-width: 100%;
+            max-height: 300px;
+            aspect-ratio: auto;
+        }
+
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .visual-grid .visual-card {
+            min-height: 180px;
+            padding: 16px;
+        }
+
+        .visual-grid .visual-card img {
+            max-height: 148px;
+        }
+
+        .visual-card:hover img,
+        .brand-mark:hover img {
+            transform: translateY(-2px) scale(1.02);
+            filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.22));
+        }
+
+        .visual-note {
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(7, 17, 30, 0.74);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+        }
+
+        .visual-note strong {
+            display: block;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .visual-note span {
+            display: block;
+            margin-top: 6px;
+            color: rgba(229, 240, 255, 0.78);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .mini-note {
+            padding: 14px 16px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(230, 241, 255, 0.78);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .theme-boutique .section-cta {
+            color: #221026;
+            background: linear-gradient(135deg, #ffd6f0, #e7b6ff);
+            box-shadow: 0 12px 28px rgba(214, 136, 202, 0.24);
+        }
+
+        .theme-boutique .ghost-cta {
+            color: #f8ddff;
+            border-color: rgba(255, 206, 236, 0.24);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .events-poster {
+            min-height: 320px;
+            padding: 22px;
+            display: grid;
+            gap: 14px;
+            align-content: end;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(165, 255, 195, 0.16), transparent 24%),
+                linear-gradient(160deg, rgba(9, 19, 17, 0.86), rgba(10, 15, 24, 0.92));
+        }
+
+            .theme-events .events-poster {
+                height: 100%;
+                min-height: 0;
+            }
+
+        .events-banner {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 16px;
+            display: block;
+        }
+
+        .events-poster h4 {
+            margin: 0;
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 40px;
+            line-height: 0.96;
+        }
+
+        .events-poster p {
+            margin: 0;
+            color: rgba(224, 248, 230, 0.8);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .event-visual-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .event-visual-grid .visual-card {
+            min-height: 220px;
+            padding: 16px;
+        }
+
+        .event-visual-grid .visual-card img {
+            max-height: 180px;
+        }
+
+        .theme-boutique .brand-mark {
+            border-color: rgba(255, 214, 236, 0.24);
+            background: linear-gradient(180deg, rgba(255, 234, 248, 0.2), rgba(255, 255, 255, 0.08));
+        }
+
+        .theme-events .brand-mark,
+        .theme-events .visual-card,
+        .theme-babji .brand-mark,
+        .theme-babji .visual-card,
+        .theme-github .brand-mark,
+        .theme-github .visual-card,
+        .theme-gitpass .brand-mark,
+        .theme-gitpass .visual-card,
+        .theme-food .brand-mark,
+        .theme-food .visual-card,
+        .theme-music .brand-mark,
+        .theme-music .visual-card,
+        .theme-skilly .brand-mark,
+        .theme-skilly .visual-card,
+        .theme-toolly .brand-mark,
+        .theme-toolly .visual-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+        }
+
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .event-tags span {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #d7ffe5;
+            font-size: 12px;
+        }
+
+        @media (max-width: 980px) {
+            .portfolio-hero,
+            .showcase,
+            .showcase.is-reverse {
+                grid-template-columns: 1fr;
+            }
+
+            .showcase.is-reverse .showcase-copy,
+            .showcase.is-reverse .showcase-visual {
+                order: initial;
+            }
+
+            .hero-meta,
+            .visual-grid,
+            .event-visual-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .portfolio-hero,
+            .showcase {
+                padding: 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .showcase-header {
+                align-items: flex-start;
+            }
+
+            .brand-mark {
+                width: 72px;
+                height: 72px;
+                padding: 10px;
+            }
+
+            .events-poster h4 {
+                font-size: 32px;
+            }
+
+            .events-banner {
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <div class="container">
+        <div class="header" style="opacity:1; animation:none; margin-bottom:30px;">
+            <h1 class="brand-name" aria-label="Naveen Reddy Janagama">
+                <svg class="brand-wordmark" viewBox="0 0 860 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="wordmarkGradientProjects" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#75ecff"/>
+                            <stop offset="55%" style="stop-color:#f7fbff"/>
+                            <stop offset="100%" style="stop-color:#f08de9"/>
+                        </linearGradient>
+                    </defs>
+                    <text x="430" y="90" text-anchor="middle" font-family="'Great Vibes', cursive" font-size="104" font-style="italic" letter-spacing="1.2" fill="url(#wordmarkGradientProjects)">Naveen Reddy Janagama</text>
+                    <path d="M210 108 C340 142, 560 142, 690 108" fill="none" stroke="url(#wordmarkGradientProjects)" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+                </svg>
+            </h1>
+            <p class="tagline">Projects</p>
+        </div>
+
+        <div class="content-section active" style="display:block; animation:none; opacity:1; padding:20px 0 40px;">
+            <button class="back-btn" onclick="window.location.href='index.html'">&larr; Back to Menu</button>
+            <div class="section-header">
+                <h2 class="section-title">Projects</h2>
+                <p class="section-subtitle">Multi-project portfolio grouped by solution theme, with each section styled uniquely and summarized from live project endpoints.</p>
+            </div>
+
+            <div class="projects-flow">
+                <section class="portfolio-hero reveal-block">
+                    <div>
+                        <span class="eyebrow"><i class="fa-solid fa-layer-group"></i> Product Portfolio</span>
+                        <h3 class="hero-title">A cleaner view<br>of live digital products.</h3>
+                        <p class="hero-copy">This page brings together certification tools, food commerce, performance platforms, fashion education, utility products, and event experiences in one readable showcase. The goal is clarity first: strong visuals, concise copy, and consistent product storytelling.</p>
+                        <div class="hero-actions">
+                            <a class="section-cta" href="https://gitpass.shop/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Explore Live Work</a>
+                            <a class="ghost-cta" href="projects/git-bootcamp/index.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-terminal"></i> Open GitHub POCs</a>
+                        </div>
+                        <div class="hero-meta">
+                            <div><strong>9</strong><span>live showcases with clear visual anchors</span></div>
+                            <div><strong>2-side</strong><span>consistent text and visual rhythm across sections</span></div>
+                            <div><strong>Focused</strong><span>short copy, scan-friendly bullets, and direct CTAs</span></div>
+                        </div>
+                    </div>
+                    <aside class="hero-panel">
+                        <h4>Portfolio design principles</h4>
+                        <p>Each project now follows one product-showcase pattern with alternating alignment, simplified headings, controlled spacing, and visual anchors pulled from the local assets folder.</p>
+                        <div class="hero-tags">
+                            <span>Readable</span>
+                            <span>Balanced</span>
+                            <span>Visual-first</span>
+                            <span>Product-led</span>
+                            <span>Modern</span>
+                        </div>
+                    </aside>
+                </section>
+
+                <section class="showcase theme-github reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">GitHub POCs</p>
+                                <h3 class="section-title">Practical demos for GitHub delivery and migration.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">A combined showcase for GitHub Bootcamp and migration work, built to explain platform value with clarity. It connects demos, enablement assets, and delivery guidance in one place.</p>
+                        <ul class="feature-list">
+                            <li>Bootcamp track for Copilot, Actions, Terraform, and demos.</li>
+                            <li>Migration guidance from Azure DevOps to GitHub.</li>
+                            <li>Presentation-ready content for field and engineering teams.</li>
+                            <li>Clear module links for faster exploration.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="projects/git-bootcamp/index.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Bootcamp</a>
+                            <a class="ghost-cta" href="projects/git-migration/index.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-code-compare"></i> Open Migration Guide</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-grid">
+                            <div class="visual-card"><img src="projects/images/gitbootcamp.png" alt="GitHub Bootcamp visual" loading="lazy" decoding="async" data-asset-img><span class="asset-fallback" aria-hidden="true">Bootcamp</span></div>
+                            <div class="visual-card"><img src="projects/images/gitmigration.png" alt="Git migration visual" loading="lazy" decoding="async" data-asset-img><span class="asset-fallback" aria-hidden="true">Migration</span></div>
+                        </div>
+                        <div class="mini-note">Includes module-level entry points for demos, Copilot, Actions, Terraform, and migration storytelling.</div>
+                    </div>
+                </section>
+
+                <section class="showcase is-reverse theme-gitpass reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">GitPass</p>
+                                <h3 class="section-title">Certification prep built like a focused product.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">GitPass packages GitHub certification training into a direct, conversion-friendly learning product. The experience is built for speed, clarity, and exam readiness.</p>
+                        <ul class="feature-list">
+                            <li>Track-led preparation across GH-900, GH-300, and GH-500.</li>
+                            <li>Mock-driven workflow for real-exam style practice.</li>
+                            <li>Fast onboarding from landing page to active access.</li>
+                            <li>Clear offer design for a product-first presentation.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="https://gitpass.shop/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-shield-halved"></i> Open GitPass</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-card image-frame">
+                            <img src="projects/images/gitpass.png" alt="GitPass product visual" loading="lazy" decoding="async" data-asset-img>
+                            <span class="asset-fallback" aria-hidden="true">GitPass</span>
+                            <div class="visual-note"><strong>Exam-ready flow</strong><span>Simple entry, clear product value, and practice-first structure.</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="showcase theme-food reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">Yummy Junction</p>
+                                <h3 class="section-title">A warm food brand with direct local ordering energy.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">Yummy Junction is designed like a modern local food product, balancing menu breadth, offer visibility, and fast conversion paths for everyday orders.</p>
+                        <ul class="feature-list">
+                            <li>Multi-cuisine menu structure with strong category clarity.</li>
+                            <li>Offers positioned for families, parties, and repeat orders.</li>
+                            <li>WhatsApp-style ordering route for reduced friction.</li>
+                            <li>Warm visual identity anchored in appetite-led color.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="https://yummyjunction.food/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-bowl-food"></i> Open Yummy Junction</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-card image-frame">
+                            <img src="projects/images/yummyjunction.png" alt="Yummy Junction preview" loading="lazy" decoding="async" data-asset-img>
+                            <span class="asset-fallback" aria-hidden="true">Yummy Junction</span>
+                            <div class="visual-note"><strong>Food commerce focus</strong><span>Menus, offers, and local ordering in one clean journey.</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="showcase is-reverse theme-music reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">WOW Music</p>
+                                <h3 class="section-title">A live performance platform with stage-first branding.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">WOW Music is built around visibility, performance energy, and season-based participation. The product story centers on audience excitement and artist recognition.</p>
+                        <ul class="feature-list">
+                            <li>Live karaoke and performance showcase identity.</li>
+                            <li>Season-driven rhythm for repeat engagement.</li>
+                            <li>YouTube visibility extends the stage beyond the event.</li>
+                            <li>Designed to attract aspiring singers and communities.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="https://wowmusic.live/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-music"></i> Open WOW Music</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-card image-frame">
+                            <img src="projects/images/wowmusic.png" alt="WOW Music preview" loading="lazy" decoding="async" data-asset-img>
+                            <span class="asset-fallback" aria-hidden="true">WOW Music</span>
+                            <div class="visual-note"><strong>Performance-led UX</strong><span>Stage atmosphere, streaming energy, and artist momentum.</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="showcase theme-boutique reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">PR Boutique</p>
+                                <h3 class="section-title">Boutique services and fashion learning with premium restraint.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">PR Boutique uses a calmer visual tone to communicate trust, craft, and experience. The section stays elegant and readable while still feeling like a polished product landing page.</p>
+                        <ul class="feature-list">
+                            <li>Custom stitching, bridal work, and boutique-led services.</li>
+                            <li>Online and offline training for practical fashion skills.</li>
+                            <li>Credibility signals through years of experience and outcomes.</li>
+                            <li>Luxury-inspired styling without visual excess.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="https://prboutique.shop/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-scissors"></i> Open PR Boutique</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-card image-frame">
+                            <img src="projects/images/PRboutique.png" alt="PR Boutique preview" loading="lazy" decoding="async" data-asset-img>
+                            <span class="asset-fallback" aria-hidden="true">PR Boutique</span>
+                        </div>
+                        <div class="mini-note">Trusted by 2000+ clients and supported by 15+ years of design and teaching experience.</div>
+                    </div>
+                </section>
+
+                <section class="showcase is-reverse theme-toolly reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">Toolly</p>
+                                <h3 class="section-title">A clean toolkit hub for everyday digital tasks.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">Toolly groups creator, document, image, SEO, and developer utilities into one fast workspace. The section is simplified to feel like a polished software product instead of a directory.</p>
+                        <ul class="feature-list">
+                            <li>Text, SEO, image, PDF, calculator, and developer categories.</li>
+                            <li>Popular tools like JSON Formatter and Password Generator.</li>
+                            <li>Built for quick single-task use without visual noise.</li>
+                            <li>Clear utility-led branding supported by local artwork.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="https://toolly.shop/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-toolbox"></i> Open Toolly</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-card image-frame">
+                            <img src="projects/images/toolly.png" alt="Toolly preview" loading="lazy" decoding="async" data-asset-img>
+                            <span class="asset-fallback" aria-hidden="true">Toolly</span>
+                            <div class="visual-note"><strong>Utility-first interface</strong><span>Organized categories and fast actions for creators and developers.</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="showcase theme-skilly reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">Skilly</p>
+                                <h3 class="section-title">Skill-building content in a focused learning destination.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">Skilly.site presents learning resources in a simple, direct experience so visitors can discover and start quickly. This showcase highlights the platform as a clean education product.</p>
+                        <ul class="feature-list">
+                            <li>Clear brand identity anchored with the official logo.</li>
+                            <li>Direct route from portfolio to the live learning site.</li>
+                            <li>Balanced copy and visuals consistent with the portfolio style.</li>
+                            <li>Designed for fast scanning and immediate action.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="https://skilly.site/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-graduation-cap"></i> Open Skilly</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-card image-frame">
+                            <img src="projects/images/skilly.png" alt="Skilly project logo" loading="lazy" decoding="async" data-asset-img>
+                            <span class="asset-fallback" aria-hidden="true">Skilly</span>
+                            <div class="visual-note"><strong>Learning-first experience</strong><span>Simple navigation and focused education storytelling.</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="showcase is-reverse theme-babji reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">Babji</p>
+                                <h3 class="section-title">A direct brand presence with a clean web landing experience.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">Babji.online is presented as a simple, action-friendly destination with clear brand focus and quick access from the portfolio. The section keeps the same product-style storytelling used across this page.</p>
+                        <ul class="feature-list">
+                            <li>Official logo-led identity for instant brand recognition.</li>
+                            <li>Direct CTA path from portfolio to live website.</li>
+                            <li>Consistent visual language with existing project showcases.</li>
+                            <li>Built for quick scanning and immediate visitor action.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="https://babji.online/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Babji</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="visual-card image-frame">
+                            <img src="projects/images/babji.png" alt="Babji project logo" loading="lazy" decoding="async" data-asset-img>
+                            <span class="asset-fallback" aria-hidden="true">Babji</span>
+                            <div class="visual-note"><strong>Brand-first layout</strong><span>Clean presentation with fast access to the live site.</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="showcase theme-events reveal-block">
+                    <div class="showcase-copy">
+                        <div class="showcase-header">
+                            <div>
+                                <p class="section-kicker">TallTalez Events</p>
+                                <h3 class="section-title">Event launches shaped around excitement, urgency, and access.</h3>
+                            </div>
+                        </div>
+                        <p class="section-text">These projects are positioned like event campaigns rather than generic websites. The focus is on energy, ticket movement, and premium access storytelling for large-format celebrations.</p>
+                        <ul class="feature-list">
+                            <li>The Jungle Holi centers on festival energy and daytime spectacle.</li>
+                            <li>Biggest NYE 2026 leans into countdown momentum and premium plans.</li>
+                            <li>Both projects frame ticketing as part of the experience story.</li>
+                            <li>Both projects are presented with equal logo presence and CTA weight.</li>
+                        </ul>
+                        <div class="showcase-actions">
+                            <a class="section-cta" href="https://thejungleholi.shop/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Jungle Holi</a>
+                            <a class="ghost-cta" href="https://thejungleholi.shop/newyear/index.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-champagne-glasses"></i> Open NYE 2026</a>
+                        </div>
+                    </div>
+                    <div class="showcase-visual">
+                        <div class="event-visual-grid">
+                            <div class="visual-card">
+                                <img src="projects/images/thejungleholi.png" alt="Jungle Holi visual" loading="lazy" decoding="async" data-asset-img>
+                                <span class="asset-fallback" aria-hidden="true">Jungle Holi</span>
+                                <div class="visual-note"><strong>Jungle Holi</strong><span>Festival-day experience with high-energy ticketed engagement.</span></div>
+                            </div>
+                            <div class="visual-card">
+                                <img src="projects/images/NYE2026.png" alt="NYE 2026 visual" loading="lazy" decoding="async" data-asset-img>
+                                <span class="asset-fallback" aria-hidden="true">NYE 2026</span>
+                                <div class="visual-note"><strong>NYE 2026</strong><span>Countdown-led premium celebration campaign and plans.</span></div>
+                            </div>
+                        </div>
+                        <div class="visual-card events-poster">
+                            <img class="events-banner" src="projects/images/talltalez_events.png" alt="TallTalez Events logo" loading="lazy" decoding="async" data-asset-img>
+                            <div class="event-tags">
+                                <span>Festival</span>
+                                <span>Tickets</span>
+                                <span>Premium plans</span>
+                            </div>
+                            <h4>Big nights. Bright campaigns.</h4>
+                            <p>The local event artwork now anchors the section, while this supporting panel keeps the campaign tone readable and balanced.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            const revealBlocks = document.querySelectorAll('.reveal-block');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.18 });
+
+            revealBlocks.forEach((block) => revealObserver.observe(block));
+
+            const assetImages = document.querySelectorAll('[data-asset-img]');
+            const activateFallback = (image) => {
+                const container = image.closest('.brand-mark, .visual-card');
+                if (container) {
+                    container.classList.add('is-fallback');
+                }
+            };
+
+            assetImages.forEach((image) => {
+                if (image.complete && image.naturalWidth === 0) {
+                    activateFallback(image);
+                    return;
+                }
+
+                image.addEventListener('error', () => activateFallback(image), { once: true });
+            });
+
+        }());
+    </script>
+</body>
+</html>
+
+
+
