@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Single-page static guide for migrating repositories, pipelines, and infrastructure from Azure DevOps to GitHub.">
+  <title>Azure DevOps to GitHub Migration Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4efe5;
+      --paper-strong: #efe7d7;
+      --ink: #1d2734;
+      --muted: #556170;
+      --line: rgba(29, 39, 52, 0.12);
+      --line-strong: rgba(29, 39, 52, 0.2);
+      --accent: #cf5c36;
+      --accent-deep: #9f3d20;
+      --accent-soft: rgba(207, 92, 54, 0.14);
+      --teal: #1f6f78;
+      --teal-soft: rgba(31, 111, 120, 0.12);
+      --shadow: 0 24px 60px rgba(28, 31, 35, 0.12);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --content: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(207, 92, 54, 0.16), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(31, 111, 120, 0.16), transparent 24%),
+        linear-gradient(180deg, #f8f4ed 0%, #f3ecdf 42%, #efe8dc 100%);
+      min-height: 100vh;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 38vw;
+      height: 38vw;
+      border-radius: 50%;
+      filter: blur(30px);
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      top: -12vw;
+      right: -10vw;
+      background: rgba(207, 92, 54, 0.14);
+    }
+
+    body::after {
+      bottom: -16vw;
+      left: -10vw;
+      background: rgba(31, 111, 120, 0.16);
+    }
+
+    a {
+      color: var(--accent-deep);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 32px), var(--content));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 12px;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(29, 39, 52, 0.08);
+      border-radius: 999px;
+      background: rgba(255, 251, 244, 0.82);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(28, 31, 35, 0.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      color: #fff8ef;
+      background: linear-gradient(135deg, var(--accent), var(--teal));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong,
+    h1,
+    h2,
+    h3,
+    h4,
+    .eyebrow,
+    .section-label {
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 0.98rem;
+    }
+
+    .brand-copy span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.92rem;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background: rgba(29, 39, 52, 0.06);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .hero-card,
+    .panel,
+    .section,
+    .metric,
+    .callout,
+    .subcard,
+    details {
+      border: 1px solid var(--line);
+      background: rgba(255, 252, 247, 0.8);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      padding: 38px;
+      background:
+        linear-gradient(135deg, rgba(255, 250, 242, 0.96), rgba(247, 238, 226, 0.96));
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% -22% auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 36px;
+      transform: rotate(22deg);
+      background: linear-gradient(135deg, rgba(31, 111, 120, 0.18), rgba(207, 92, 54, 0.12));
+    }
+
+    .eyebrow,
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-deep);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.95;
+      max-width: 10ch;
+    }
+
+    .hero-card p {
+      position: relative;
+      z-index: 1;
+      font-size: 1.02rem;
+      line-height: 1.72;
+      color: var(--muted);
+      max-width: 62ch;
+      margin: 18px 0 0;
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--accent), #dd7c54);
+      color: #fff7f0;
+      box-shadow: 0 12px 24px rgba(159, 61, 32, 0.22);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      border-radius: 28px;
+      padding: 24px;
+    }
+
+    .panel h2,
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 1.55rem;
+    }
+
+    .panel p,
+    .section p,
+    .section li,
+    details li,
+    details p,
+    td,
+    th {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(255, 248, 240, 0.78);
+    }
+
+    .metric strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.9rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .metric span {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 96px;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 252, 247, 0.8);
+      box-shadow: var(--shadow);
+    }
+
+    .toc h2 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+    }
+
+    .toc a {
+      display: block;
+      text-decoration: none;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .toc a:hover,
+    .toc a:focus-visible {
+      background: rgba(29, 39, 52, 0.06);
+      color: var(--ink);
+      outline: none;
+    }
+
+    .content {
+      display: grid;
+      gap: 22px;
+    }
+
+    .section {
+      border-radius: 30px;
+      padding: 28px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .subcard,
+    .callout {
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.52);
+    }
+
+    .subcard h3,
+    .callout h3,
+    details h3,
+    details h4 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .checklist,
+    .plain-list,
+    .steps {
+      margin: 14px 0 0;
+      padding-left: 20px;
+    }
+
+    .checklist li,
+    .plain-list li,
+    .steps li {
+      margin-bottom: 8px;
+    }
+
+    .callout {
+      border-color: rgba(31, 111, 120, 0.16);
+      background: linear-gradient(135deg, rgba(31, 111, 120, 0.08), rgba(255, 255, 255, 0.52));
+    }
+
+    .callout.warn {
+      border-color: rgba(207, 92, 54, 0.2);
+      background: linear-gradient(135deg, rgba(207, 92, 54, 0.1), rgba(255, 255, 255, 0.52));
+    }
+
+    .inline-code,
+    pre {
+      border: 1px solid rgba(29, 39, 52, 0.08);
+      background: #1f2730;
+      color: #eef3f7;
+      border-radius: 18px;
+    }
+
+    .inline-code {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.94rem;
+      background: rgba(29, 39, 52, 0.08);
+      color: var(--ink);
+      border-radius: 8px;
+    }
+
+    pre {
+      margin: 16px 0 0;
+      padding: 16px 18px;
+      overflow: auto;
+      line-height: 1.55;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      overflow: hidden;
+      border-radius: 16px;
+      border-style: hidden;
+      box-shadow: 0 0 0 1px var(--line);
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      font-size: 0.84rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      background: rgba(29, 39, 52, 0.05);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    details {
+      border-radius: 22px;
+      padding: 18px 18px 6px;
+      background: rgba(255, 255, 255, 0.55);
+      margin-top: 16px;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.02rem;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 12px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      font-size: 1.35rem;
+      color: var(--accent-deep);
+      flex: none;
+    }
+
+    details[open] summary::after {
+      content: "-";
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(29, 39, 52, 0.06);
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .timeline .subcard {
+      position: relative;
+      padding-top: 48px;
+    }
+
+    .timeline .subcard strong {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.88rem;
+      color: var(--accent-deep);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .footer {
+      margin-top: 24px;
+      padding: 24px 18px 12px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hide-if-missing {
+      border-radius: 24px;
+      overflow: hidden;
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    @media (max-width: 1080px) {
+      .hero,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(calc(100% - 20px), var(--content));
+        padding-top: 14px;
+      }
+
+      .topbar {
+        position: static;
+        border-radius: 24px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-card,
+      .panel,
+      .section,
+      .toc {
+        padding: 22px;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 12vw, 3.5rem);
+      }
+
+      .stats,
+      .section-grid,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">AG</div>
+        <div class="brand-copy">
+          <strong>ADO to GitHub Migration</strong>
+          <span>Single-page static handbook for repositories, pipelines, and infrastructure</span>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#prerequisites">Prerequisites</a>
+        <a href="#methods">Methods</a>
+        <a href="#process">Process</a>
+        <a href="#pipelines">Pipelines</a>
+        <a href="#operations">Operations</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Migration Handbook</div>
+        <h1>Azure DevOps to GitHub</h1>
+        <p>
+          This static page consolidates the migration website into one document. It covers repository migration,
+          pipeline conversion, discovery, Terraform setup, prerequisites, and automation guidance without relying on Docusaurus routing.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#overview">Start With The Guide</a>
+          <a class="button button-secondary" href="#methods">Jump To Migration Methods</a>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <section class="panel">
+          <h2>What This Covers</h2>
+          <div class="stats">
+            <div class="metric">
+              <strong>12</strong>
+              <span>Migration process steps</span>
+            </div>
+            <div class="metric">
+              <strong>3</strong>
+              <span>Migration execution paths</span>
+            </div>
+            <div class="metric">
+              <strong>Full</strong>
+              <span>Repository history preservation guidance</span>
+            </div>
+            <div class="metric">
+              <strong>IaC</strong>
+              <span>Terraform and automation coverage</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Core Outcomes</h2>
+          <ul class="checklist">
+            <li>Migrate repositories with branches, tags, and commit history intact.</li>
+            <li>Refactor Azure Pipelines into GitHub Actions workflows.</li>
+            <li>Prepare credentials, secrets, and access before cutover.</li>
+            <li>Standardize discovery, validation, and rollback planning.</li>
+          </ul>
+        </section>
+      </aside>
+    </section>
+
+    <div class="layout">
+      <aside class="toc" aria-label="Table of contents">
+        <h2>Contents</h2>
+        <a href="#overview">1. Guide Overview</a>
+        <a href="#architecture">2. Migration Architecture</a>
+        <a href="#prerequisites">3. Prerequisites</a>
+        <a href="#methods">4. Migration Methods</a>
+        <a href="#process">5. 12-Step Process</a>
+        <a href="#pipelines">6. Pipeline Conversion</a>
+        <a href="#discovery">7. Discovery and Analysis</a>
+        <a href="#questionnaire">8. Client Questionnaire</a>
+        <a href="#terraform">9. Terraform Overview</a>
+        <a href="#scripts">10. PowerShell Automation</a>
+      </aside>
+
+      <main class="content">
+        <section class="section" id="overview">
+          <div class="section-label">Guide Overview</div>
+          <h2>What the guide includes</h2>
+          <p>
+            This guide is intended for teams moving source control and delivery workflows from Azure DevOps to GitHub.
+            It combines the original website content into one HTML page so it can be shared or opened directly without a site generator.
+          </p>
+
+          <div class="section-grid">
+            <article class="subcard">
+              <h3>Covered In This Guide</h3>
+              <ul class="checklist">
+                <li>Repository migration with complete history.</li>
+                <li>Branch, tag, and Git configuration preservation.</li>
+                <li>Pipeline conversion to GitHub Actions.</li>
+                <li>Authentication, secrets, and access setup.</li>
+                <li>Enterprise discovery and migration planning.</li>
+                <li>Terraform-backed infrastructure preparation.</li>
+              </ul>
+            </article>
+
+            <article class="subcard">
+              <h3>Not Migrated Automatically</h3>
+              <ul class="checklist">
+                <li>Azure DevOps Boards and work items.</li>
+                <li>Pull requests and approval history.</li>
+                <li>Wiki content.</li>
+                <li>Azure Pipelines definitions.</li>
+                <li>Repository permissions and policies.</li>
+                <li>Build artifacts and releases.</li>
+              </ul>
+            </article>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Repository Size</th>
+                <th>Typical Duration</th>
+                <th>Suggested Path</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Small, under 100 MB</td>
+                <td>1 to 2 hours</td>
+                <td>Web importer or CLI</td>
+              </tr>
+              <tr>
+                <td>Medium, 100 MB to 1 GB</td>
+                <td>2 to 8 hours</td>
+                <td>Web importer or CLI</td>
+              </tr>
+              <tr>
+                <td>Large, above 1 GB</td>
+                <td>1 to 3 days</td>
+                <td>CLI with validation</td>
+              </tr>
+              <tr>
+                <td>Enterprise, multiple repositories</td>
+                <td>1 to 4 weeks</td>
+                <td>CLI plus automation and phased rollout</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="pill-row" aria-label="Benefits">
+            <span class="pill">Unified platform</span>
+            <span class="pill">Better collaboration</span>
+            <span class="pill">Actions ecosystem</span>
+            <span class="pill">Security tooling</span>
+            <span class="pill">Automation-ready</span>
+          </div>
+        </section>
+
+        <section class="section" id="architecture">
+          <div class="section-label">Architecture</div>
+          <h2>Migration architecture at a glance</h2>
+          <p>
+            The end-to-end architecture is organized into staged layers so teams can move from discovery to validation with clear traceability.
+          </p>
+
+          <div class="section-grid">
+            <article class="subcard">
+              <h3>1. Discovery and prerequisites</h3>
+              <ul class="plain-list">
+                <li>Validate Azure DevOps organization and repository access.</li>
+                <li>Prepare GitHub destination organizations, repositories, and credentials.</li>
+                <li>Confirm migration scope, sequencing, and success criteria.</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>2. Migration execution</h3>
+              <ul class="plain-list">
+                <li>Run repository migration by web importer or CLI.</li>
+                <li>Convert or refactor pipelines into GitHub Actions.</li>
+                <li>Use repeatable scripts to reduce manual variance.</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>3. Infrastructure and state</h3>
+              <ul class="plain-list">
+                <li>Use Terraform-managed Azure resources where infrastructure is part of the move.</li>
+                <li>Maintain consistent backend and state storage.</li>
+                <li>Capture outputs and variables needed for deployment workflows.</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>4. Validation and rollout</h3>
+              <ul class="plain-list">
+                <li>Verify repositories, branches, and pipeline behavior.</li>
+                <li>Run smoke tests and policy validation.</li>
+                <li>Complete phased rollout and handoff.</li>
+              </ul>
+            </article>
+          </div>
+
+          <figure class="hide-if-missing">
+            <img src="static/img/arch.png" alt="Migration architecture diagram" onerror="this.closest('figure').style.display='none'">
+          </figure>
+        </section>
+
+        <section class="section" id="prerequisites">
+          <div class="section-label">Prerequisites</div>
+          <h2>Prepare access, accounts, and clone credentials</h2>
+          <p>
+            Before migrating anything, verify the target GitHub permissions, Azure DevOps repository access, repository clone URLs, and the Personal Access Token required for authentication.
+          </p>
+
+          <details open>
+            <summary>GitHub account and organization setup</summary>
+            <p>Create or confirm a GitHub account with the correct permission scope for the destination repositories.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Account Type</th>
+                  <th>Best Fit</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Free</td>
+                  <td>Individuals and learning projects</td>
+                  <td>Private repositories supported, limited Actions minutes.</td>
+                </tr>
+                <tr>
+                  <td>Pro</td>
+                  <td>Professional developers</td>
+                  <td>Extra minutes, protected branches, insights.</td>
+                </tr>
+                <tr>
+                  <td>Team</td>
+                  <td>Development teams</td>
+                  <td>Team controls and collaboration features.</td>
+                </tr>
+                <tr>
+                  <td>Enterprise</td>
+                  <td>Large organizations</td>
+                  <td>Audit, security, compliance, self-hosted runners.</td>
+                </tr>
+              </tbody>
+            </table>
+            <ul class="steps">
+              <li>Create the account at github.com and verify email.</li>
+              <li>Enable two-factor authentication.</li>
+              <li>Create or join the target organization.</li>
+              <li>Verify you can create repositories and configure secrets.</li>
+            </ul>
+          </details>
+
+          <details open>
+            <summary>Azure DevOps access verification</summary>
+            <p>You need at least Contributor-level repository access to clone and migrate repositories.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Permission Level</th>
+                  <th>Can Migrate</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Reader</td>
+                  <td>No</td>
+                  <td>Cannot perform the required clone operations.</td>
+                </tr>
+                <tr>
+                  <td>Contributor</td>
+                  <td>Yes</td>
+                  <td>Minimum viable permission set.</td>
+                </tr>
+                <tr>
+                  <td>Project Administrator</td>
+                  <td>Yes</td>
+                  <td>Full access inside the project.</td>
+                </tr>
+                <tr>
+                  <td>Organization Administrator</td>
+                  <td>Yes</td>
+                  <td>Global access and policy control.</td>
+                </tr>
+              </tbody>
+            </table>
+            <ul class="steps">
+              <li>Check organization users and project permissions.</li>
+              <li>Open Repos and confirm the target repository is visible.</li>
+              <li>Verify Clone, Read, and Pull permissions.</li>
+              <li>Request access from project or organization administrators if needed.</li>
+            </ul>
+          </details>
+
+          <details open>
+            <summary>Finding and validating the clone URL</summary>
+            <p>Use the Azure DevOps HTTPS clone URL. The standard format is shown below.</p>
+            <pre>https://dev.azure.com/{organization}/{project}/_git/{repository}</pre>
+            <ul class="steps">
+              <li>Navigate to Repos and open the target repository.</li>
+              <li>Select Clone, choose HTTPS, and copy the URL.</li>
+              <li>Open the URL in a browser to verify it resolves to the right repository.</li>
+              <li>Remove any query parameters if you copied it from the address bar.</li>
+            </ul>
+            <div class="callout">
+              <h3>URL considerations</h3>
+              <p>Use HTTPS for GitHub importer. Repository names with spaces or special characters are automatically URL-encoded when copied from Azure DevOps.</p>
+            </div>
+          </details>
+
+          <details open>
+            <summary>Creating an Azure DevOps Personal Access Token</summary>
+            <p>Create a scoped PAT with the minimum permissions required for repository reads.</p>
+            <ul class="steps">
+              <li>Open Azure DevOps personal access tokens from your profile menu.</li>
+              <li>Create a new token with a descriptive name such as GitHub Migration Token.</li>
+              <li>Select the correct organization and the shortest viable expiration window.</li>
+              <li>Grant Code with Read permission only.</li>
+              <li>Copy the token immediately and store it in a secure password manager.</li>
+            </ul>
+            <table>
+              <thead>
+                <tr>
+                  <th>Duration</th>
+                  <th>Recommended For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>7 days</td>
+                  <td>Quick, one-off migrations</td>
+                </tr>
+                <tr>
+                  <td>30 days</td>
+                  <td>Standard project migrations</td>
+                </tr>
+                <tr>
+                  <td>90 days</td>
+                  <td>Large enterprise programs</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="callout warn">
+              <h3>Security rules</h3>
+              <p>Do not commit PATs to source control, store them in plain text, or share them in chat. Revoke the token as soon as the migration is complete.</p>
+            </div>
+          </details>
+        </section>
+
+        <section class="section" id="methods">
+          <div class="section-label">Migration Methods</div>
+          <h2>Choose the migration path that matches repository size and team maturity</h2>
+          <p>
+            The original site documented three practical execution options: GitHub's web importer, a full CLI workflow, and an automated PowerShell-driven path.
+          </p>
+
+          <div class="section-grid">
+            <article class="subcard">
+              <h3>Web interface migration</h3>
+              <p>Best for small to medium repositories, new Git users, and quick one-time imports under GitHub importer limits.</p>
+              <ul class="plain-list">
+                <li>Open the importer at github.com/new/import.</li>
+                <li>Paste the Azure DevOps HTTPS clone URL.</li>
+                <li>Authenticate with Azure DevOps username and PAT.</li>
+                <li>Create the destination repository and begin import.</li>
+                <li>Verify files, commits, branches, and tags after completion.</li>
+              </ul>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Limit</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Maximum repository size</td>
+                    <td>5 GB</td>
+                  </tr>
+                  <tr>
+                    <td>Maximum file size</td>
+                    <td>100 MB</td>
+                  </tr>
+                  <tr>
+                    <td>Maximum push size</td>
+                    <td>2 GB</td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+
+            <article class="subcard">
+              <h3>CLI migration</h3>
+              <p>Best for large repositories, Git LFS, scripted migrations, or when full control over the mirror process is required.</p>
+              <pre>gh auth login
+gh repo create my-migrated-repo --private --description "Migrated from Azure DevOps"
+git clone --mirror https://username:PAT@dev.azure.com/org/project/_git/repo
+cd repo.git
+git remote add github https://github.com/username/my-migrated-repo.git
+git push --mirror github</pre>
+              <ul class="plain-list">
+                <li>Authenticate with GitHub CLI first.</li>
+                <li>Create the destination GitHub repository.</li>
+                <li>Mirror-clone the Azure DevOps repository.</li>
+                <li>Add GitHub as a second remote.</li>
+                <li>Push all refs, branches, and tags with mirror mode.</li>
+              </ul>
+            </article>
+          </div>
+
+          <article class="callout" style="margin-top: 16px;">
+            <h3>When to use PowerShell automation</h3>
+            <p>
+              Use the scripted approach when migrating multiple repositories in Windows-heavy environments or when you want an opinionated workflow with prerequisite checks and guided prompts.
+            </p>
+            <ul class="plain-list">
+              <li>Interactive input collection for GitHub and Azure DevOps details.</li>
+              <li>Built-in checks for Git and GitHub CLI.</li>
+              <li>Automated repository creation, mirror clone, remote add, and push.</li>
+              <li>Cleanup and optional browser launch at the end.</li>
+            </ul>
+          </article>
+
+          <details>
+            <summary>Common troubleshooting across migration methods</summary>
+            <ul class="plain-list">
+              <li>Repository not found: verify the clone URL directly from Azure DevOps.</li>
+              <li>Authentication failed: confirm username format and PAT scope.</li>
+              <li>Import timed out or failed: use the CLI path for large repositories.</li>
+              <li>Missing branches or commits: re-run using mirror clone and mirror push.</li>
+            </ul>
+          </details>
+        </section>
+
+        <section class="section" id="process">
+          <div class="section-label">12-Step Process</div>
+          <h2>Recommended end-to-end migration workflow</h2>
+          <p>
+            The migration process moves from discovery through preparation, cutover, validation, and production rollout. Follow the steps sequentially and validate each one before proceeding.
+          </p>
+
+          <pre>Discovery -> Preparation -> Repo Migration -> Lockdown -> Secrets -> Runners -> Pipeline Creation -> Authentication -> Testing -> Fixing -> Push Changes -> Production Validation</pre>
+
+          <div class="timeline">
+            <article class="subcard"><strong>Step 1</strong><h3>Initial client discovery</h3><p>Inventory repositories, pipelines, dependencies, and complexity.</p></article>
+            <article class="subcard"><strong>Step 2</strong><h3>Environment preparation</h3><p>Create GitHub org structures, permissions, and migration tooling.</p></article>
+            <article class="subcard"><strong>Step 3</strong><h3>Repository migration</h3><p>Move repositories with full history and validate the result.</p></article>
+            <article class="subcard"><strong>Step 4</strong><h3>Azure DevOps lockdown</h3><p>Make the source repository read-only and notify developers.</p></article>
+            <article class="subcard"><strong>Step 5</strong><h3>Secrets and variables</h3><p>Re-create repository secrets and environment variables in GitHub.</p></article>
+            <article class="subcard"><strong>Step 6</strong><h3>Runner configuration</h3><p>Set up GitHub-hosted or self-hosted runners.</p></article>
+            <article class="subcard"><strong>Step 7</strong><h3>Pipeline creation</h3><p>Convert Azure Pipeline definitions to GitHub Actions workflows.</p></article>
+            <article class="subcard"><strong>Step 8</strong><h3>Authentication setup</h3><p>Configure cloud credentials, OIDC, or service principals.</p></article>
+            <article class="subcard"><strong>Step 9</strong><h3>Migration testing</h3><p>Trigger workflows and validate outputs, deployments, and logs.</p></article>
+            <article class="subcard"><strong>Step 10</strong><h3>Issue fixing</h3><p>Iteratively debug syntax, dependencies, and environment differences.</p></article>
+            <article class="subcard"><strong>Step 11</strong><h3>Push final changes</h3><p>Commit workflow configuration and update supporting docs.</p></article>
+            <article class="subcard"><strong>Step 12</strong><h3>Production validation</h3><p>Run the production pipeline and confirm everything works.</p></article>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Repository Type</th>
+                <th>Total Timeline</th>
+                <th>Typical Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Simple</td>
+                <td>1 to 2 days</td>
+                <td>No pipelines or minimal integration work.</td>
+              </tr>
+              <tr>
+                <td>Medium</td>
+                <td>3 to 5 days</td>
+                <td>One or two pipelines plus validation.</td>
+              </tr>
+              <tr>
+                <td>Complex</td>
+                <td>1 to 2 weeks</td>
+                <td>Multiple pipelines and higher dependency count.</td>
+              </tr>
+              <tr>
+                <td>Enterprise</td>
+                <td>6 to 8 weeks</td>
+                <td>Many repositories, teams, and phased rollout.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <details>
+            <summary>Decision points and rollback guidance</summary>
+            <div class="section-grid">
+              <article class="subcard">
+                <h3>Method selection</h3>
+                <ul class="plain-list">
+                  <li>Use web import for repositories under 5 GB and simple one-off moves.</li>
+                  <li>Use CLI for large repositories, batch migrations, or Git LFS.</li>
+                  <li>Use PowerShell automation in Windows enterprise workflows.</li>
+                </ul>
+              </article>
+              <article class="subcard">
+                <h3>Runner selection</h3>
+                <ul class="plain-list">
+                  <li>Use GitHub-hosted runners for standard public-network builds.</li>
+                  <li>Use self-hosted runners for private network access or special toolchains.</li>
+                </ul>
+              </article>
+            </div>
+            <ol class="steps">
+              <li>Immediate rollback: re-enable Azure DevOps and notify the team.</li>
+              <li>Partial rollback: keep GitHub repositories but temporarily continue using Azure Pipelines.</li>
+              <li>Prevention: test in non-production, document rollback, and keep ADO access during transition.</li>
+            </ol>
+          </details>
+        </section>
+
+        <section class="section" id="pipelines">
+          <div class="section-label">Pipeline Conversion</div>
+          <h2>Map Azure Pipelines concepts to GitHub Actions</h2>
+          <p>
+            Azure DevOps and GitHub Actions both use YAML, but the pipeline model, naming, and integration mechanisms differ. Treat conversion as a structured refactoring rather than a direct text rewrite.
+          </p>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Azure DevOps</th>
+                <th>GitHub Actions</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>trigger</td>
+                <td>on</td>
+                <td>Defines when a workflow executes.</td>
+              </tr>
+              <tr>
+                <td>pool</td>
+                <td>runs-on</td>
+                <td>Defines the runner or agent image.</td>
+              </tr>
+              <tr>
+                <td>stages</td>
+                <td>jobs</td>
+                <td>High-level pipeline grouping becomes jobs.</td>
+              </tr>
+              <tr>
+                <td>task</td>
+                <td>uses or run</td>
+                <td>Vendor tasks map to actions or shell commands.</td>
+              </tr>
+              <tr>
+                <td>variables</td>
+                <td>env or secrets</td>
+                <td>Choose based on sensitivity and scope.</td>
+              </tr>
+              <tr>
+                <td>service connections</td>
+                <td>Secrets or OIDC</td>
+                <td>Prefer OIDC where supported.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="section-grid">
+            <article class="subcard">
+              <h3>Example translation</h3>
+              <pre>Azure DevOps
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'
+- script: npm install
+- script: npm test</pre>
+            </article>
+            <article class="subcard">
+              <h3>GitHub Actions equivalent</h3>
+              <pre>name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+      - run: npm install
+      - run: npm test</pre>
+            </article>
+          </div>
+
+          <details open>
+            <summary>Common task mappings</summary>
+            <table>
+              <thead>
+                <tr>
+                  <th>Azure DevOps Task</th>
+                  <th>GitHub Actions Equivalent</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>checkout: self</td>
+                  <td>actions/checkout@v4</td>
+                </tr>
+                <tr>
+                  <td>NodeTool@0</td>
+                  <td>actions/setup-node@v4</td>
+                </tr>
+                <tr>
+                  <td>UseDotNet@2</td>
+                  <td>actions/setup-dotnet@v4</td>
+                </tr>
+                <tr>
+                  <td>UsePythonVersion@0</td>
+                  <td>actions/setup-python@v5</td>
+                </tr>
+                <tr>
+                  <td>Docker@2 buildAndPush</td>
+                  <td>docker/build-push-action@v5</td>
+                </tr>
+                <tr>
+                  <td>AzureCLI@2</td>
+                  <td>azure/login plus shell commands</td>
+                </tr>
+                <tr>
+                  <td>PublishBuildArtifacts@1</td>
+                  <td>actions/upload-artifact@v4</td>
+                </tr>
+                <tr>
+                  <td>DownloadBuildArtifacts@0</td>
+                  <td>actions/download-artifact@v4</td>
+                </tr>
+              </tbody>
+            </table>
+          </details>
+
+          <div class="callout warn">
+            <h3>Conversion guidance</h3>
+            <p>Analyze triggers, agent pools, custom tasks, templates, variables, secrets, and service connections first. The hard part is usually external dependency mapping and authentication, not YAML syntax.</p>
+          </div>
+        </section>
+
+        <section class="section" id="discovery">
+          <div class="section-label">Discovery and Analysis</div>
+          <h2>Front-load the inventory work before the first migration</h2>
+          <p>
+            The discovery phase reduces migration risk by exposing repository size, pipeline complexity, external integrations, and compliance requirements before execution begins.
+          </p>
+
+          <div class="section-grid">
+            <article class="subcard">
+              <h3>Repository inventory</h3>
+              <ul class="plain-list">
+                <li>Repository name and business owner.</li>
+                <li>Repository size, large files, and Git LFS usage.</li>
+                <li>Branch count, commit count, and contributor activity.</li>
+                <li>Last activity date and migration priority.</li>
+              </ul>
+              <pre>git count-objects -vH
+git branch -r
+git rev-list --count --all</pre>
+            </article>
+            <article class="subcard">
+              <h3>Pipeline analysis</h3>
+              <ul class="plain-list">
+                <li>Count pipelines per repository.</li>
+                <li>Capture triggers, stages, tasks, templates, and dependencies.</li>
+                <li>List service connections, secrets, and deployment environments.</li>
+                <li>Identify classic UI pipelines that need manual YAML conversion.</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>Integration points</h3>
+              <ul class="plain-list">
+                <li>Cloud services across Azure, AWS, or GCP.</li>
+                <li>Artifact registries, package feeds, and container registries.</li>
+                <li>Monitoring systems such as Application Insights or Datadog.</li>
+                <li>Notification channels like Teams or Slack.</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>Security and compliance</h3>
+              <ul class="plain-list">
+                <li>Compliance standards and audit expectations.</li>
+                <li>Secret management requirements.</li>
+                <li>Access models and environment controls.</li>
+                <li>Data residency or regulatory constraints.</li>
+              </ul>
+            </article>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Complexity</th>
+                <th>Criteria</th>
+                <th>Migration Effort</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Simple</td>
+                <td>Under 100 MB, under 10 branches, no pipelines</td>
+                <td>1 to 2 hours</td>
+              </tr>
+              <tr>
+                <td>Medium</td>
+                <td>100 MB to 1 GB, 10 to 50 branches, 1 to 3 pipelines</td>
+                <td>4 to 8 hours</td>
+              </tr>
+              <tr>
+                <td>Complex</td>
+                <td>Above 1 GB, many branches, multiple pipelines</td>
+                <td>1 to 3 days</td>
+              </tr>
+              <tr>
+                <td>Critical</td>
+                <td>Production workloads and high dependency density</td>
+                <td>3 to 7 days</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <details>
+            <summary>Risk assessment examples</summary>
+            <table>
+              <thead>
+                <tr>
+                  <th>Risk</th>
+                  <th>Severity</th>
+                  <th>Mitigation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Repository larger than web importer supports</td>
+                  <td>High</td>
+                  <td>Use CLI mirror migration.</td>
+                </tr>
+                <tr>
+                  <td>Complex pipeline dependencies</td>
+                  <td>Medium</td>
+                  <td>Allocate extra conversion and testing time.</td>
+                </tr>
+                <tr>
+                  <td>Many active developers</td>
+                  <td>Medium</td>
+                  <td>Schedule migration windows and freeze periods.</td>
+                </tr>
+                <tr>
+                  <td>Production deployment pathways</td>
+                  <td>High</td>
+                  <td>Stage first and validate with rollback procedures.</td>
+                </tr>
+              </tbody>
+            </table>
+          </details>
+        </section>
+
+        <section class="section" id="questionnaire">
+          <div class="section-label">Client Discovery</div>
+          <h2>Use a structured questionnaire before planning the cutover</h2>
+          <p>
+            The questionnaire in the original site was designed to collect enough information to define scope, estimate effort, identify risks, and align on success criteria.
+          </p>
+
+          <div class="section-grid">
+            <article class="subcard">
+              <h3>Business goals and drivers</h3>
+              <ul class="plain-list">
+                <li>Why is the team migrating to GitHub?</li>
+                <li>What is the required timeline and urgency?</li>
+                <li>Are there blackout windows or downtime constraints?</li>
+                <li>How will migration success be measured?</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>Repository inventory</h3>
+              <ul class="plain-list">
+                <li>Total repositories, archived repositories, and test repositories.</li>
+                <li>Monorepos, large binaries, and branching strategy.</li>
+                <li>Priority, last activity, and representative complexity samples.</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>CI/CD and automation</h3>
+              <ul class="plain-list">
+                <li>What CI/CD systems are in use today?</li>
+                <li>How many build, test, deployment, and scheduled pipelines exist?</li>
+                <li>Are pipelines YAML-based, UI-defined, or mixed?</li>
+                <li>Are custom tasks, templates, or extensions involved?</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>Integrations and environments</h3>
+              <ul class="plain-list">
+                <li>Which cloud platforms, subscriptions, and accounts are connected?</li>
+                <li>Where are artifacts stored?</li>
+                <li>Which monitoring, chat, and quality tools are integrated?</li>
+                <li>What type of agents or runners are needed?</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="callout">
+            <h3>Questionnaire outcome</h3>
+            <p>The goal is not just information gathering. The output should become a migration plan with repository priorities, identified blockers, target timelines, and success metrics that stakeholders agree to before execution.</p>
+          </div>
+        </section>
+
+        <section class="section" id="terraform">
+          <div class="section-label">Terraform</div>
+          <h2>Infrastructure as code support for repeatable environments</h2>
+          <p>
+            The original Terraform documentation described a supporting Azure infrastructure layout that can be provisioned consistently and tracked in source control.
+          </p>
+
+          <div class="section-grid">
+            <article class="subcard">
+              <h3>Resources covered</h3>
+              <ul class="plain-list">
+                <li>Azure resource group.</li>
+                <li>Linux App Service plan.</li>
+                <li>Linux web app.</li>
+                <li>Storage account and private container.</li>
+                <li>Azure Container Registry.</li>
+                <li>Optional SQL resources noted as currently disabled.</li>
+              </ul>
+            </article>
+            <article class="subcard">
+              <h3>Configuration files</h3>
+              <ul class="plain-list">
+                <li>provider.tf for provider and client config.</li>
+                <li>variables.tf for inputs such as location and tags.</li>
+                <li>backendstg.tf for remote state storage.</li>
+                <li>output.tf for resource names and endpoints.</li>
+              </ul>
+            </article>
+          </div>
+
+          <pre>terraform init
+terraform validate
+terraform plan
+terraform apply</pre>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Prerequisite</th>
+                <th>Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Terraform installed</td>
+                <td>Required to initialize, validate, plan, and apply IaC.</td>
+              </tr>
+              <tr>
+                <td>Azure CLI installed</td>
+                <td>Used for Azure authentication and subscription selection.</td>
+              </tr>
+              <tr>
+                <td>Azure login completed</td>
+                <td>Needed before provisioning or planning against a subscription.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="section" id="scripts">
+          <div class="section-label">PowerShell Automation</div>
+          <h2>Interactive automation for repeatable repository migration</h2>
+          <p>
+            The PowerShell scripts documented in the site automate the CLI path with user prompts, validation, and cleanup. They are intended for Windows users who want a repeatable guided migration flow.
+          </p>
+
+          <details open>
+            <summary>Interactive migration script workflow</summary>
+            <ol class="steps">
+              <li>Check whether Git is installed.</li>
+              <li>Check whether GitHub CLI is installed and authenticated.</li>
+              <li>Prompt for GitHub owner, repository name, Azure DevOps username, PAT, organization, project, and repository name.</li>
+              <li>Create the destination GitHub repository.</li>
+              <li>Mirror-clone the Azure DevOps repository.</li>
+              <li>Add GitHub as a remote and push with mirror mode.</li>
+              <li>Remove temporary clone data and optionally open the result in a browser.</li>
+            </ol>
+          </details>
+
+          <pre># Typical steps performed by the script
+gh repo create repo-name --private --description "Migrated from Azure DevOps"
+git clone --mirror https://ado-user:PAT@dev.azure.com/org/project/_git/repo
+cd repo.git
+git remote add github https://github.com/github-user/repo-name.git
+git push --mirror github</pre>
+
+          <div class="callout warn">
+            <h3>Operational caution</h3>
+            <p>Because the script collects credentials and repository details interactively, confirm that your terminal history, logging, and execution environment are appropriate for handling sensitive values.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      <p>Static single-page edition of the Azure DevOps to GitHub Migration Guide.</p>
+      <p><a href="#overview">Back to top</a></p>
+    </footer>
+  </div>
+</body>
+</html>

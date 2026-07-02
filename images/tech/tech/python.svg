@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Python">
+  <defs>
+    <linearGradient id="pyBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3BA6F5"/>
+      <stop offset="1" stop-color="#2D74DA"/>
+    </linearGradient>
+    <linearGradient id="pyGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFD661"/>
+      <stop offset="1" stop-color="#F2B632"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="22" fill="#f5f6f8"/>
+  <path d="M120 28v184M28 120h184M45 45l150 150M195 45L45 195" stroke="#eceef2" stroke-width="10" stroke-linecap="round"/>
+  <rect x="74" y="62" width="92" height="58" rx="16" fill="url(#pyBlue)"/>
+  <rect x="74" y="120" width="92" height="58" rx="16" fill="url(#pyGold)"/>
+  <path d="M95 92h28v20H99c-2.2 0-4 1.8-4 4v10h-9V98c0-3.3 2.7-6 6-6z" fill="#fff" opacity="0.9"/>
+  <path d="M145 148h-28v-20h24c2.2 0 4-1.8 4-4v-10h9v28c0 3.3-2.7 6-6 6z" fill="#fff" opacity="0.9"/>
+  <circle cx="102" cy="77" r="4" fill="#0b1d52"/>
+  <circle cx="138" cy="163" r="4" fill="#6e4b06"/>
+</svg>
