@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "id": "certifications",
+      "label": "Certifications",
+      "images": [
+        { "file": "commbank.png", "caption": "Commonwealth Bank" },
+        { "file": "jntu-degree.png", "caption": "JNTU Degree" }
+      ]
+    },
+    {
+      "id": "events",
+      "label": "Events & Awards",
+      "images": []
+    },
+    {
+      "id": "workspace",
+      "label": "Workspace",
+      "images": [
+        { "file": "profile.jpg", "caption": "Profile" }
+      ]
+    }
+  ]
+}
