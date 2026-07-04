@@ -3596,9 +3596,24 @@ html { scroll-behavior: auto; }
 /* Mobile: tighten main panel padding so there's no dead whitespace */
 @media (max-width:860px) {
     .main-panel { padding: 24px 18px 32px !important; }
-    .sidebar { width: 200px !important; min-width: 200px !important; }
+    .sidebar { width: 200px !important; min-width: 200px !important; padding: 18px 10px 14px !important; }
+    .brand-name { font-size: 28px !important; }
+    .tagline { font-size: 8.5px !important; letter-spacing: 0.8px !important; }
+    .nav-item { padding: 8px 9px !important; font-size: 12px !important; gap: 8px !important; }
+    .nav-item .nav-ico { width: 26px !important; height: 26px !important; flex: 0 0 26px !important; font-size: 11px !important; }
+    .nav-item .nav-label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px; }
 }
 @media (max-width:520px) {
-    .main-panel { padding: 16px 12px 24px !important; }
-    .sidebar { width: 172px !important; min-width: 172px !important; }
+    .main-panel { padding: 14px 10px 20px !important; }
+    .sidebar { width: 155px !important; min-width: 155px !important; padding: 12px 8px 10px !important; }
+    .brand-name { font-size: 22px !important; }
+    .tagline { display: none !important; }
+    .nav-item { padding: 7px 7px !important; font-size: 11.5px !important; gap: 7px !important; }
+    .nav-item .nav-ico { width: 24px !important; height: 24px !important; flex: 0 0 24px !important; font-size: 10px !important; }
+    .nav-item .nav-label { max-width: 95px !important; }
+    .nav-item .nav-label em { display: none !important; }
+    .sidebar-social .social-link { width: 28px !important; height: 28px !important; font-size: 12px !important; }
+    .sidebar-stat { padding: 8px 6px !important; gap: 7px !important; }
+    .sidebar-stat .stat-ico { width: 24px !important; height: 24px !important; }
+    .sidebar-stat .stat-num { font-size: 14px !important; }
 }
