@@ -29,14 +29,21 @@ function initVisitCounter() {
    const el = document.getElementById('visitCount');
    if (!el) return;
    const fmt = (n) => (n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n));
-   // increment once per browser session, otherwise just read the total
-   const bumped = sessionStorage.getItem('nrj_visit_bumped') === '1';
-   const url = bumped
+   // Increment once per calendar day using localStorage (survives refresh/tab reopen).
+   // On same day after first visit, just read the current total without incrementing.
+   const today = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+   const lastVisit = localStorage.getItem('nrj_visit_date');
+   const alreadyCountedToday = lastVisit === today;
+   const url = alreadyCountedToday
       ? 'https://api.counterapi.dev/v1/naveenreddyjanagama/site-visits'
       : 'https://api.counterapi.dev/v1/naveenreddyjanagama/site-visits/up';
    fetch(url, { cache: 'no-store' })
       .then(r => r.ok ? r.json() : Promise.reject())
-      .then(d => { const n = d.count ?? d.value ?? 0; el.textContent = fmt(n); sessionStorage.setItem('nrj_visit_bumped', '1'); })
+      .then(d => {
+         const n = d.count ?? d.value ?? d.hits ?? d.total ?? 0;
+         el.textContent = fmt(n);
+         if (!alreadyCountedToday) localStorage.setItem('nrj_visit_date', today);
+      })
       .catch(() => { el.textContent = '—'; });
 }
 

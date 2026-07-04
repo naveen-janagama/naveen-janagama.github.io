@@ -3301,6 +3301,7 @@ html { scroll-behavior: smooth; }
 .contact-item.static { cursor:default; }
 .form-group.invalid input, .form-group.invalid textarea { border-color:#dc2626 !important; }
 .field-error { display:block; color:#dc2626; font-size:11.5px; margin-top:5px; min-height:14px; }
+.field-optional { font-size:10.5px; font-weight:400; color:#94a3b8; margin-left:4px; }
 .submit-btn.sent { background:linear-gradient(135deg,rgba(22,163,74,0.15),rgba(22,163,74,0.15)) !important; border-color:#16a34a !important; color:#16a34a !important; }
 .contact-icon-box.linkedin { background:linear-gradient(135deg,rgba(10,102,194,0.85),rgba(10,102,194,0.7)); }
 .contact-icon-box.github { background:linear-gradient(135deg,#24292e,#3a3f45); }
@@ -3570,12 +3571,15 @@ html { scroll-behavior: auto; }
     top: 0;
     width: 280px !important;
     min-width: 280px !important;
+    /* dvh accounts for mobile browser chrome (address bar) — no dead space */
     height: 100vh !important;
+    height: 100dvh !important;
 }
 
 .main-panel {
     flex: 1 !important;
     height: 100vh !important;
+    height: 100dvh !important;
     overflow-y: auto !important;
     padding: 40px 46px 60px !important;
 }
@@ -3587,4 +3591,14 @@ html { scroll-behavior: auto; }
 
 .nav-item {
     width: 100% !important;
+}
+
+/* Mobile: tighten main panel padding so there's no dead whitespace */
+@media (max-width:860px) {
+    .main-panel { padding: 24px 18px 32px !important; }
+    .sidebar { width: 200px !important; min-width: 200px !important; }
+}
+@media (max-width:520px) {
+    .main-panel { padding: 16px 12px 24px !important; }
+    .sidebar { width: 172px !important; min-width: 172px !important; }
 }
