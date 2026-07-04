@@ -86,19 +86,11 @@
     }
 
     .resume-actions {
-      position: fixed;
-      top: 16px;
-      right: 20px;
+      width: var(--page-width);
+      margin: 20px auto 12px;
       display: flex;
-      gap: 8px;
-      z-index: 9999;
-      background: rgba(255, 255, 255, 0.96);
-      padding: 8px 12px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.18);
-      border: 1px solid #dbeafe;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      justify-content: center;
+      gap: 12px;
     }
 
     .action-btn {
@@ -1499,13 +1491,9 @@
 
     @media (max-width: 640px) {
       .resume-actions {
-        width: 100%;
+        width: var(--page-width);
         justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .action-btn {
-        width: 100%;
+        flex-wrap: nowrap;
       }
 
       .hero-stat {
