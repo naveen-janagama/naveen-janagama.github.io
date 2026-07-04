@@ -335,25 +335,6 @@ body {
 }
 
 /* Responsive: collapse sidebar to top bar */
-@media (max-width: 860px) {
-	.container { flex-direction: column; }
-	.sidebar {
-		position: static;
-		width: 100%;
-		flex: none;
-		height: auto;
-		border-right: none;
-		border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-	}
-	.sidebar-nav {
-		flex-direction: row;
-		flex-wrap: wrap;
-		gap: 6px;
-	}
-	.nav-item { width: auto; padding: 9px 12px; }
-	.nav-item .nav-label { font-size: 13px; }
-	.main-panel { height: auto; padding: 28px 20px 48px; }
-}
 
 /* Header */
 .header {
