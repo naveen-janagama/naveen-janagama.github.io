@@ -86,13 +86,12 @@
     }
 
     .resume-actions {
-      width: var(--page-width);
-      margin: 14px auto 0;
+      position: fixed;
+      top: 16px;
+      right: 24px;
       display: flex;
-      justify-content: flex-end;
       gap: 10px;
-      padding: 2px 0;
-      clear: both;
+      z-index: 100;
     }
 
     .action-btn {
@@ -1711,6 +1710,11 @@
   </style>
 </head>
 <body>
+  <div class="resume-actions no-print">
+    <a class="action-btn action-btn-primary" href="Naveen_Reddy_Janagama_Resume.pdf" download="Naveen_Reddy_Janagama_Resume.pdf">Download PDF</a>
+    <button type="button" class="action-btn action-btn-secondary" onclick="printResume()">Print Resume</button>
+  </div>
+
   <div id="resumeDocument">
   <main class="page">
     <aside class="sidebar">
@@ -2094,11 +2098,6 @@
     </div>
   </main>
 
-  </div>
-
-  <div class="resume-actions no-print">
-    <a class="action-btn action-btn-primary" href="Naveen_Reddy_Janagama_Resume.pdf" download="Naveen_Reddy_Janagama_Resume.pdf">Download PDF</a>
-    <button type="button" class="action-btn action-btn-secondary" onclick="printResume()">Print Resume</button>
   </div>
 
   <script>
