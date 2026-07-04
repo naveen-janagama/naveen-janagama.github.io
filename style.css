@@ -1,4 +1,4 @@
-@charset "utf-8";
+i@charset "utf-8";
 
 * {
 	margin: 0;
@@ -3552,3 +3552,33 @@ html { scroll-behavior: auto; }
 .tcs-desc { font-size:15px; color:#475569; max-width:460px; line-height:1.7; margin:0 0 28px; }
 .tcs-desc a { color:#6366f1; text-decoration:none; font-weight:600; }
 .tcs-desc a:hover { text-decoration:underline; }
+/* Force Desktop Layout on All Devices */
+
+.container {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.sidebar {
+    position: sticky !important;
+    top: 0;
+    width: 280px !important;
+    min-width: 280px !important;
+    height: 100vh !important;
+}
+
+.main-panel {
+    flex: 1 !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    padding: 40px 46px 60px !important;
+}
+
+.sidebar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.nav-item {
+    width: 100% !important;
+}
