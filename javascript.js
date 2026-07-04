@@ -215,13 +215,31 @@ function initNav() {
    const navLinks = Array.from(document.querySelectorAll('.sidebar-nav .nav-item[href^="#"]'));
    const sections = Array.from(document.querySelectorAll('.section'));
 
+   // Mobile bottom nav
+   const mobileNav = document.getElementById('mobileNav');
+   const mobItems = mobileNav ? Array.from(mobileNav.querySelectorAll('.mob-nav-item[data-section]')) : [];
+
+   // Show/hide mobile nav based on screen width
+   function applyMobileNav() {
+      if (!mobileNav) return;
+      mobileNav.style.display = window.innerWidth <= 640 ? 'flex' : 'none';
+   }
+   applyMobileNav();
+   window.addEventListener('resize', applyMobileNav);
+
    function showSection(id) {
       const target = document.getElementById(id);
       if (!target) return;
       sections.forEach(s => s.classList.toggle('active', s === target));
       navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
-      const panel = document.getElementById('mainPanel');
-      if (panel) panel.scrollTop = 0;
+      mobItems.forEach(b => b.classList.toggle('active', b.dataset.section === id));
+      // On mobile scroll page top; on desktop scroll panel top
+      if (window.innerWidth <= 640) {
+         window.scrollTo(0, 0);
+      } else {
+         const panel = document.getElementById('mainPanel');
+         if (panel) panel.scrollTop = 0;
+      }
       history.replaceState(null, '', '#' + id);
       if (id === 'introduction') animateStats();
    }
@@ -231,6 +249,10 @@ function initNav() {
          e.preventDefault();
          showSection(link.getAttribute('href').slice(1));
       });
+   });
+
+   mobItems.forEach(btn => {
+      btn.addEventListener('click', () => showSection(btn.dataset.section));
    });
 
    // expose for in-page CTA buttons

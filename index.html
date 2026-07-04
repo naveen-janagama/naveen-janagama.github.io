@@ -40,7 +40,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Orbitron:wght@600;700;800&family=Outfit:wght@200;300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="style.css?v=20260704q">
+    <link rel="stylesheet" href="style.css?v=20260704r">
 
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="shortcut icon" href="images/favicon.png">
@@ -370,6 +370,21 @@
 
         </main>
     </div>
+
+    <!-- Mobile bottom navigation bar (hidden on desktop via CSS) -->
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" style="display:none">
+        <button class="mob-nav-item active" data-section="home"><i class="fa-solid fa-house"></i><span>Home</span></button>
+        <button class="mob-nav-item" data-section="about"><i class="fa-solid fa-user-gear"></i><span>About</span></button>
+        <button class="mob-nav-item" data-section="introduction"><i class="fa-solid fa-circle-info"></i><span>Intro</span></button>
+        <button class="mob-nav-item" data-section="technologies"><i class="fa-solid fa-microchip"></i><span>Tech</span></button>
+        <button class="mob-nav-item" data-section="experience"><i class="fa-solid fa-briefcase"></i><span>Work</span></button>
+        <button class="mob-nav-item" data-section="responsibilities"><i class="fa-solid fa-list-check"></i><span>Duties</span></button>
+        <button class="mob-nav-item" data-section="projects"><i class="fa-solid fa-diagram-project"></i><span>Projects</span></button>
+        <button class="mob-nav-item" data-section="gallery"><i class="fa-solid fa-lock"></i><span>Gallery</span></button>
+        <button class="mob-nav-item" data-section="training"><i class="fa-solid fa-graduation-cap"></i><span>Training</span></button>
+        <a class="mob-nav-item" href="profile/index.html" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines"></i><span>Resume</span></a>
+        <button class="mob-nav-item" data-section="contact"><i class="fa-solid fa-paper-plane"></i><span>Contact</span></button>
+    </nav>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
