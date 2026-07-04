@@ -3090,9 +3090,8 @@ html { scroll-behavior: smooth; }
 }
 .tagline { font-size: 10px; letter-spacing: 1.2px; color:#64748b; text-transform: uppercase; font-weight:500; text-align:center; line-height:1.5; }
 
-.sidebar-nav { display:flex; flex-direction:column; gap:3px; overflow-y:auto; flex:1 1 auto; padding-right:2px; }
-.sidebar-nav::-webkit-scrollbar { width:6px; }
-.sidebar-nav::-webkit-scrollbar-thumb { background:rgba(15,23,42,0.12); border-radius:3px; }
+.sidebar-nav { display:flex; flex-direction:column; gap:3px; overflow-y:auto; flex:1 1 auto; padding-right:2px; scrollbar-width:none; }
+.sidebar-nav::-webkit-scrollbar { display:none; }
 
 .nav-item {
 	display:flex; align-items:center; gap:11px; width:100%;
