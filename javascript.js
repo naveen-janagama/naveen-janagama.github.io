@@ -216,7 +216,6 @@ function initNav() {
       const panel = document.getElementById('mainPanel');
       if (panel) panel.scrollTop = 0;
       history.replaceState(null, '', '#' + id);
-      document.body.classList.remove('nav-open');
       if (id === 'introduction') animateStats();
    }
 
@@ -587,9 +586,5 @@ function initContactForm() {
    });
 }
 
-/* =========================================================
-   MOBILE NAV TOGGLE
-   ========================================================= */
-function initMobileNav() {
-   document.getElementById('navToggle')?.addEventListener('click', () => document.body.classList.toggle('nav-open'));
-}
+/* Mobile nav toggle removed — sidebar always visible */
+function initMobileNav() {}

@@ -334,7 +334,7 @@ body {
 	display: none !important;
 }
 
-/* Responsive: collapse sidebar to top bar */
+/* Responsive: sidebar always visible — no mobile drawer */
 
 /* Header */
 .header {
@@ -3314,31 +3314,56 @@ html { scroll-behavior: smooth; }
 .nav-toggle { display:none; position:fixed; top:18px; left:18px; z-index:210; width:44px; height:44px; border:none; border-radius:12px;
 	background:#fff; color:#0f172a; font-size:17px; box-shadow:0 8px 20px rgba(15,23,42,0.16); cursor:pointer; }
 
-/* =========================== RESPONSIVE =========================== */
-@media (max-width:1040px){
-	.home-hero { grid-template-columns:1fr; text-align:center; gap:34px; }
+/* =========================== RESPONSIVE ===========================
+   Sidebar is ALWAYS visible — identical layout at every screen size.
+   Only content inside the main panel adapts (single-column grids,
+   smaller padding, smaller fonts). No hamburger, no drawer, ever.
+   ================================================================= */
+
+/* Hide the hamburger toggle — never needed */
+.nav-toggle { display:none !important; }
+
+/* Sidebar: always sticky left column, never collapses */
+/* (no overrides needed — the base styles already do this) */
+
+/* Shrink sidebar on narrow screens so content panel keeps room */
+@media (max-width:860px){
+	.sidebar { width:220px; flex:0 0 220px; padding:18px 10px 14px; }
+	.brand-name { font-size:30px; }
+	.tagline { font-size:9px; }
+	.nav-item { padding:8px 10px; font-size:12.5px; gap:9px; }
+	.nav-item .nav-ico { width:26px; height:26px; flex:0 0 26px; font-size:12px; }
+	.section { padding:40px 24px; }
+	.section-home { padding-top:36px; }
+	.section-title { font-size:28px; }
+}
+
+/* Content grids collapse to single column at 860px */
+@media (max-width:860px){
+	.home-hero { grid-template-columns:1fr; text-align:center; gap:28px; }
 	.home-summary { margin-inline:auto; }
 	.home-cta-group, .home-quickstats { justify-content:center; }
-	.about-content { grid-template-columns:1fr; gap:32px; }
+	.about-content { grid-template-columns:1fr; gap:28px; }
 	.about-image { order:-1; }
 	.about-badges { justify-content:center; }
-}
-@media (max-width:860px){
-	.nav-toggle { display:flex; }
-	.container { flex-direction:column; }
-	.sidebar { position:fixed; left:0; top:0; bottom:0; width:270px; flex:none; height:100vh;
-		transform:translateX(-105%); transition:transform .3s ease; box-shadow:0 0 40px rgba(15,23,42,0.25); }
-	body.nav-open .sidebar { transform:translateX(0); }
-	.main-panel { height:auto; }
-	.section { padding:52px 22px; }
-	.section-home { padding-top:76px; }
+	.contact-grid { grid-template-columns:1fr; }
 	.sticky-resume span { display:none; }
 	.sticky-resume { padding:12px; }
 }
+
+/* Extra-small: tighten further */
 @media (max-width:520px){
-	.home-quickstats { gap:18px; }
-	.section-title { font-size:30px; }
-	.tl-item { padding-left:60px; } .timeline::before { left:25px; } .tl-marker { width:44px; height:44px; }
+	.sidebar { width:190px; flex:0 0 190px; padding:14px 8px 12px; }
+	.brand-name { font-size:26px; }
+	.nav-item { padding:7px 8px; font-size:12px; }
+	.nav-item .nav-label em { display:none; }
+	.section { padding:28px 16px; }
+	.section-title { font-size:24px; }
+	.home-quickstats { gap:14px; flex-wrap:wrap; }
+	.tl-item { padding-left:54px; }
+	.timeline::before { left:22px; }
+	.tl-marker { width:40px; height:40px; }
+	.home-hero-photo { width:200px; height:200px; }
 }
 
 /* Ensure [hidden] wins over display rules */
