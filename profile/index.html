@@ -49,14 +49,14 @@
       --accent-2: #1d4ed8;
       --line: #dbe7ff;
       --chip: #eaf4ff;
-      --page-width: 208mm;
-      --page-height: 295mm;
+      --page-width: 210mm;
+      --page-height: 297mm;
       --sidebar-width: 64mm;
       --brand-grad: linear-gradient(135deg, #06b6d4 0%, #1d4ed8 100%);
     }
 
     @page {
-      size: A4;
+      size: 210mm 297mm;
       margin: 0;
     }
 
@@ -1573,23 +1573,50 @@
     }
 
     @media print {
-      html,
-      body {
-        display: block;
-        padding: 0;
-        background: none;
-        gap: 0;
+      @page {
+        size: A4;
+        margin: 0;
       }
 
-      .page {
-        width: var(--page-width);
-        height: var(--page-height);
-        min-height: var(--page-height);
+      html, body {
+        display: block;
+        width: 210mm;
         margin: 0;
+        padding: 0;
+        background: white;
+        gap: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* hide buttons and wrapper padding */
+      .no-print,
+      .resume-actions {
+        display: none !important;
+      }
+
+      #resumeDocument {
+        display: block;
+        width: 210mm;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* each .page is exactly one A4 sheet */
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        max-height: 297mm;
+        height: 297mm;
+        margin: 0;
+        padding-bottom: 0;
         box-shadow: none;
-        overflow: hidden;
+        overflow: visible;
+        position: relative;
         break-after: page;
         page-break-after: always;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
       .page:last-of-type {
@@ -1602,20 +1629,78 @@
         page-break-before: always;
       }
 
+      /* prevent sections from splitting mid-content */
+      .experience-item,
+      .project-item,
+      .award-card,
+      .skill-tile,
+      .timeline-item,
+      .section-card,
+      .metric-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* sidebar must fill the full page height */
+      .sidebar {
+        min-height: 297mm;
+      }
+
+      /* tighten spacing for print fit */
+      .content {
+        padding: 18px 20px 20px;
+      }
+
+      .sidebar {
+        padding: 18px 16px 20px;
+      }
+
+      .experience-item {
+        margin-bottom: 12px;
+      }
+
+      .hero {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+      }
+
       .core-skills-grid {
-        gap: 8px;
+        gap: 7px;
       }
 
       .skill-tile {
         min-height: auto;
         transform: none;
-        box-shadow:
-          0 2px 6px rgba(30, 64, 175, 0.08),
-          inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        box-shadow: none;
+        border: 1px solid #dbeafe;
       }
 
-      .no-print {
-        display: none !important;
+      .career-timeline {
+        margin-top: 4px;
+        padding: 12px 14px 10px;
+      }
+
+      .awards-section {
+        margin-top: 2px;
+      }
+
+      .awards-grid {
+        gap: 6px;
+      }
+
+      .award-card {
+        padding: 8px 10px;
+      }
+
+      .second-content {
+        gap: 8px;
+      }
+
+      .page-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
       }
     }
 
