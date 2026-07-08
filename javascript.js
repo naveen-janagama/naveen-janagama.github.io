@@ -128,9 +128,9 @@ const TIMELINE = [
       'Managed IIS-hosted application deployments, Windows Server configurations, and SQL Server database support across multi-tier hosted environments.',
       'Handled incident management, change control, service requests, and structured problem management using ITSM processes — documenting resolutions in KB articles for recurring issues.'],
      tech:['Windows Server','IIS','SQL Server','ITSM','Incident Management','Change Management'] },
-   { logo:'sieo.png', role:'System Engineer', org:'Sieo Technologies', domain:'IT Services', date:'2011', edu:false,
-     bullets:['Started professional career at Sieo Technologies, building foundational expertise in system administration, infrastructure support, and IT operations.'],
-     tech:['Windows Server','Networking','IT Support'] },
+   { logo:'sieo.png', role:'IIS Administrator', org:'Sieo Technologies', domain:'IT Services', date:'2011', edu:false,
+     bullets:['Started professional career at Sieo Technologies as an IIS Administrator, building foundational expertise in IIS web server management, Windows Server administration, infrastructure support, and IT operations.'],
+     tech:['IIS','Windows Server','Networking','IT Support'] },
 ];
 
 const RESPONSIBILITIES = [
