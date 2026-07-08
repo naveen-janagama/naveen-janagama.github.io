@@ -128,9 +128,9 @@ const TIMELINE = [
       'Managed IIS-hosted application deployments, Windows Server configurations, and SQL Server database support across multi-tier hosted environments.',
       'Handled incident management, change control, service requests, and structured problem management using ITSM processes — documenting resolutions in KB articles for recurring issues.'],
      tech:['Windows Server','IIS','SQL Server','ITSM','Incident Management','Change Management'] },
-   { logo:'jntu.png', role:'Bachelor of Technology', org:'JNTU, Hyderabad, India', domain:'Education', date:'2010', edu:true,
-     bullets:['Strong academic foundation in computer science and engineering — underpinning 15+ years of expertise in infrastructure, cloud operations, DevOps, SRE, and platform engineering.'],
-     tech:[] },
+   { logo:'sieo.png', role:'System Engineer', org:'Sieo Technologies', domain:'IT Services', date:'2011', edu:false,
+     bullets:['Started professional career at Sieo Technologies, building foundational expertise in system administration, infrastructure support, and IT operations.'],
+     tech:['Windows Server','Networking','IT Support'] },
 ];
 
 const RESPONSIBILITIES = [
